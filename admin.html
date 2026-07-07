@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UPHeadline Admin Panel</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UPHeadline Admin Panel</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
 <header>
-  <div class="logo">👨‍💼 Admin Panel</div>
+<h1>📰 UPHeadline Admin Panel</h1>
 </header>
 
-<section class="hero">
-  <h2>News Publish करें</h2>
-  <p>यहाँ से आप नई खबर जोड़ सकते हैं</p>
-</section>
+<div style="max-width:700px;margin:30px auto;padding:20px;background:#fff;border-radius:10px;box-shadow:0 0 10px #ccc;">
 
-<!-- NEWS FORM -->
-<div style="padding:20px; max-width:600px; margin:auto; background:white; border-radius:10px;">
+<input type="text" id="title" placeholder="News Title" style="width:100%;padding:10px;margin:10px 0;">
 
-  <input type="text" id="title" placeholder="News Title" style="width:100%; padding:10px; margin-bottom:10px;">
+<textarea id="desc" placeholder="News Description" style="width:100%;padding:10px;height:120px;margin:10px 0;"></textarea>
 
-  <textarea id="desc" placeholder="News Description" style="width:100%; padding:10px; margin-bottom:10px; height:100px;"></textarea>
+<input type="text" id="image" placeholder="Image URL" style="width:100%;padding:10px;margin:10px 0;">
 
-  <input type="text" id="image" placeholder="Image URL" style="width:100%; padding:10px; margin-bottom:10px;">
+<select id="category" style="width:100%;padding:10px;margin:10px 0;">
+<option value="UP News">UP News</option>
+<option value="India">India</option>
+<option value="World">World</option>
+<option value="Sports">Sports</option>
+<option value="Politics">Politics</option>
+</select>
 
-  <button onclick="publishNews()" style="padding:10px 20px; background:#c00000; color:white; border:none; cursor:pointer;">
-    Publish News
-  </button>
+<button onclick="publishNews()" style="padding:12px 25px;background:#c00000;color:white;border:none;border-radius:5px;cursor:pointer;">
+Publish News
+</button>
 
 </div>
 
-<!-- NEWS PREVIEW -->
-<h3 style="text-align:center; margin-top:20px;">Published News</h3>
-<div id="newsList" class="news-container"></div>
+<div id="newsList"></div>
 
-<script src="admin.js"></script>
+<script type="module" src="admin.js"></script>
+
 </body>
 </html>
