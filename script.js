@@ -7,13 +7,25 @@ import {
 
 import { db } from "./firebase-config.js";
 
+// News Container
 const newsContainer = document.querySelector(".news-container");
 
+// Firestore Collection
 const q = query(collection(db, "news"), orderBy("date", "desc"));
 
+// Load News
 onSnapshot(q, (snapshot) => {
 
     newsContainer.innerHTML = "";
+
+    if (snapshot.empty) {
+        newsContainer.innerHTML = `
+            <h2 style="text-align:center;color:gray;">
+                अभी कोई समाचार उपलब्ध नहीं है।
+            </h2>
+        `;
+        return;
+    }
 
     snapshot.forEach((doc) => {
 
@@ -23,13 +35,21 @@ onSnapshot(q, (snapshot) => {
 
         <div class="news-card">
 
-            <img src="${data.image}" alt="News">
+            <img src="${data.image || 'https://via.placeholder.com/400x250?text=No+Image'}"
+                 alt="News"
+                 onerror="this.src='https://via.placeholder.com/400x250?text=No+Image'">
 
-            <h3>${data.title}</h3>
+            <div class="news-content">
 
-            <p>${data.description}</p>
+                <h3>${data.title || "No Title"}</h3>
 
-            <small>${data.category}</small>
+                <p>${data.description || data.desc || ""}</p>
+
+                <small><b>Category:</b> ${data.category || "General"}</small><br>
+
+                <small><b>Date:</b> ${data.date || ""}</small>
+
+            </div>
 
         </div>
 
